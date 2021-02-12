@@ -1,11 +1,11 @@
+import React from "react";
+import EmployeeContainer from "./components/EmployeeContainer/EmployeeContainer"
+
 
 
 function App() {
   return (
-    <div className="App">
-     <h1>hello world</h1>
-     <button type="button" class="btn btn-primary">Primary</button>
-    </div>
+    <EmployeeContainer />
   );
 }
 

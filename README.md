@@ -53,3 +53,5 @@ You are required to submit the following:
 * the URL to the deployed application
 
 * the URL to the Github repository
+
+https://randomuser.me/api/

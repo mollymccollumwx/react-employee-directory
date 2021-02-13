@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import EmployeeRow from "../EmployeeRow/EmployeeRow";
 import axios from "axios";
-import SearchBar from "../SearchBar/SearchBar";
+// import SearchBar from "../SearchBar/SearchBar";
 
 class Employees extends Component {
   state = {
@@ -23,6 +23,16 @@ class Employees extends Component {
         this.setState({ employees: response.data.results });
       });
   };
+
+  handleInputChange = (e) => {
+    e.preventDefault();
+
+    const {name, value} = e.target;
+
+    this.setState({
+      [name]: value,
+    })
+  }
 
   handleNameSort = () => {
     console.log("you clicked the name sort arrow");
@@ -47,7 +57,20 @@ class Employees extends Component {
       <div className="container-fluid">
         <div className="row d-flex justify-content-center">
           <div className="col-2">
-            <SearchBar />
+            {/* <SearchBar name={/> */}
+            <form>
+              <div className="form-group bg-dark text-white">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="exampleFormControlInput1"
+                  placeholder="Search"
+                  value={this.state.search}
+                  name="search"
+                  onChange={this.handleInputChange}
+                />
+              </div>
+            </form>
           </div>
         </div>
         <div className="row">

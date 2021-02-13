@@ -27,7 +27,7 @@ class Employees extends Component {
       <div className="container">
         <div className="row">
           <div className="col">
-            <table class="table table-striped">
+            <table className="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">Image</th>
@@ -39,7 +39,7 @@ class Employees extends Component {
               </thead>
               <tbody>
                 {this.state.employees.map((employee) => (
-                  <EmployeeRow {...employee}/>
+                  <EmployeeRow {...employee} key={employee.id}/>
                 ))}
               </tbody>
             </table>

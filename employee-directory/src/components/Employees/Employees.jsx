@@ -39,12 +39,6 @@ class Employees extends Component {
     }
   };
 
-  // FROM STACK OVERFLOW ABOUT SORTING ALPHABETICALLY
-
-  // ["Foo", "bar"].sort(function (a, b) {
-  //   return a.toLowerCase().localeCompare(b.toLowerCase());
-  // });
-
   render() {
     return (
       <div className="container-fluid">

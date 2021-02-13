@@ -21,11 +21,20 @@ class Employees extends Component {
     });
   };
 
-  // handleNameSort = () => {
-  //   if (this.sortByName === ""){
-      
-  //   }
-  // }
+  handleNameSort = () => {
+    if (this.sortByName === ""){
+      const sortedNames = this.state.employees;
+
+      sortedNames.sort((a, b) => {
+        if(a.name.first < b.name.first) {
+          return -1;
+        } else if (a.name.first > b.name.first) {
+          return 1;
+        }
+        
+      })
+    }
+  }
 
   // FROM STACK OVERFLOW ABOUT SORTING ALPHABETICALLY
 //   users.sort(function(a, b){
@@ -33,6 +42,10 @@ class Employees extends Component {
 //     if(a.firstname > b.firstname) { return 1; }
 //     return 0;
 // })
+
+// ["Foo", "bar"].sort(function (a, b) {
+//   return a.toLowerCase().localeCompare(b.toLowerCase());
+// });
 
 
   render() {

@@ -24,7 +24,7 @@ class Employees extends Component {
   };
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col">
             <table className="table table-striped">

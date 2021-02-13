@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EmployeeRow from "../EmployeeRow/EmployeeRow";
 import axios from "axios";
+import SearchBar from "../SearchBar/SearchBar";
 
 class Employees extends Component {
   state = {
@@ -44,9 +45,14 @@ class Employees extends Component {
   render() {
     return (
       <div className="container-fluid">
+        <div className="row d-flex justify-content-center">
+          <div className="col-2">
+            <SearchBar />
+          </div>
+        </div>
         <div className="row">
           <div className="col">
-            <table className="table table-striped">
+            <table className="table table-striped table-dark">
               <thead>
                 <tr>
                   <th scope="col">Image</th>

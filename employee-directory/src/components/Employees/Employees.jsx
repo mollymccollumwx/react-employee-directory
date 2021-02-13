@@ -1,27 +1,23 @@
 import React, { Component } from "react";
-import EmployeeRow from "../EmployeeRow/EmployeeRow"
+import EmployeeRow from "../EmployeeRow/EmployeeRow";
+import axios from "axios";
 
 class Employees extends Component {
   state = {
-    employees: [
-      {
-        id: 1,
-        image: "https://randomuser.me/api/portraits/thumb/men/75.jpg",
-        name: "Arnold Palmer",
-        phone: "867-5309",
-        email: "arnold@test.com",
-        DOB: "01-02-1990",
-      },
-      {
-        id: 2,
-        image: "https://randomuser.me/api/portraits/thumb/men/75.jpg",
-        name: "Bob Test",
-        phone: "867-5309",
-        email: "bob@test.com",
-        DOB: "02-01-1990",
-      },
-    ],
+    employees: [],
+ 
   };
+
+  componentDidMount (){
+    this.getEmployees();
+  }
+  getEmployees = () => {
+    axios.get("https://randomuser.me/api/?results=25&nat=us").then((response) => {
+      console.log(response.data.results);
+      this.setState({employees: response.data.results});
+    });
+  };
+
   render() {
     return (
       <div className="container-fluid">
@@ -39,7 +35,7 @@ class Employees extends Component {
               </thead>
               <tbody>
                 {this.state.employees.map((employee) => (
-                  <EmployeeRow {...employee} key={employee.id}/>
+                  <EmployeeRow {...employee} key={employee.id} />
                 ))}
               </tbody>
             </table>

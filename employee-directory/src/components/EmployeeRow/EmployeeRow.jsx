@@ -1,15 +1,15 @@
 import React from "react";
 
-const EmployeeRow = ({ image, name, phone, email, DOB }) => {
+const EmployeeRow = ({ picture, name, phone, email, dob }) => {
   return (
     <tr>
       <td>
-        <img src={image} alt="employee photo"></img>
+        <img src={picture.thumbnail} alt="employee photo"></img>
       </td>
-      <td>{name}</td>
+      <td>{name.first} {name.last}</td>
       <td>{phone}</td>
       <td>{email}</td>
-      <td>{DOB}</td>
+      <td>{dob.date.substring(0,10)}</td>
     </tr>
   );
 };

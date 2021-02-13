@@ -5,18 +5,35 @@ import axios from "axios";
 class Employees extends Component {
   state = {
     employees: [],
+    sortByName: "",
  
   };
 
   componentDidMount (){
     this.getEmployees();
   }
+
+
   getEmployees = () => {
     axios.get("https://randomuser.me/api/?results=25&nat=us").then((response) => {
       console.log(response.data.results);
       this.setState({employees: response.data.results});
     });
   };
+
+  // handleNameSort = () => {
+  //   if (this.sortByName === ""){
+      
+  //   }
+  // }
+
+  // FROM STACK OVERFLOW ABOUT SORTING ALPHABETICALLY
+//   users.sort(function(a, b){
+//     if(a.firstname < b.firstname) { return -1; }
+//     if(a.firstname > b.firstname) { return 1; }
+//     return 0;
+// })
+
 
   render() {
     return (
@@ -27,7 +44,7 @@ class Employees extends Component {
               <thead>
                 <tr>
                   <th scope="col">Image</th>
-                  <th scope="col">Name</th>
+                  <th scope="col" onClick={this.handleNameSort}>Name <i className="fas fa-sort-down"></i></th>
                   <th scope="col">Phone</th>
                   <th scope="col">Email</th>
                   <th scope="col">DOB</th>
@@ -35,7 +52,7 @@ class Employees extends Component {
               </thead>
               <tbody>
                 {this.state.employees.map((employee) => (
-                  <EmployeeRow {...employee} key={employee.id} />
+                  <EmployeeRow {...employee} key={employee.id.value} />
                 ))}
               </tbody>
             </table>

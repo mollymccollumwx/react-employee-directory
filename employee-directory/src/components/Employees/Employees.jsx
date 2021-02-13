@@ -23,13 +23,20 @@ class Employees extends Component {
 
   handleNameSort = () => {
     console.log("you clicked the name sort arrow");
+    console.log(this.state.sortByName);
     let sortedNames = this.state.employees;
-    // if (this.sortByName === "") {
+
+    if (this.state.sortByName === "") {
       sortedNames.sort((a, b) => {
         return a.name.first.localeCompare(b.name.first);
       });
-      this.setState({ employees: sortedNames})
-    
+      this.setState({ employees: sortedNames, sortByName: "aToZ" });
+    } else if (this.state.sortByName === "aToZ") {
+      sortedNames.sort((a, b) => {
+        return b.name.first.localeCompare(a.name.first);
+      });
+      this.setState({ employees: sortedNames, sortByName: "zToA" });
+    }
   };
 
   // FROM STACK OVERFLOW ABOUT SORTING ALPHABETICALLY

@@ -6,6 +6,8 @@ class Employees extends Component {
   state = {
     employees: [],
     sortByName: "",
+    sortedEmployees: [],
+    search: "",
   };
 
   componentDidMount() {

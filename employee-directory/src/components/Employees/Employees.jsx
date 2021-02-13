@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 
 class Employees extends Component {
+
+    state= {
+        employees: {
+            id: 1,
+            image: "https://randomuser.me/api/portraits/thumb/men/75.jpg",
+            name: "Arnold Palmer",
+            phone: "867-5309",
+            email: "arnold@test.com",
+            DOB: "01-02-1990"
+        }
+    }
   render() {
     return (
       <div className="container">
@@ -19,14 +30,17 @@ class Employees extends Component {
               <tbody>
                 <tr>
                   {/* <th scope="row">1</th> */}
-                  <td><img src="https://randomuser.me/api/portraits/thumb/men/75.jpg" alt="employee photo"></img></td>
-                  <td>Arnold Palmer</td>
-                  <td>867-5309</td>
-                  <td>arnold@test.com</td>
-                  <td>01-02-1990</td>
-
+                  <td>
+                    <img
+                      src={this.state.employees.image}
+                      alt="employee photo"
+                    ></img>
+                  </td>
+                  <td>{this.state.employees.name}</td>
+                  <td>{this.state.employees.phone}</td>
+                  <td>{this.state.employees.email}</td>
+                  <td>{this.state.employees.phone}</td>
                 </tr>
-              
               </tbody>
             </table>
           </div>

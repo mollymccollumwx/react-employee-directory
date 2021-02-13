@@ -1,11 +1,11 @@
 import React from "react";
-import EmployeeContainer from "./components/EmployeeContainer/EmployeeContainer"
+import Employees from "./components/Employees/Employees";
 
 
 
 function App() {
   return (
-    <EmployeeContainer />
+    <Employees />
   );
 }
 

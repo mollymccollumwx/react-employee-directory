@@ -1,17 +1,27 @@
 import React, { Component } from "react";
+import EmployeeRow from "../EmployeeRow/EmployeeRow"
 
 class Employees extends Component {
-
-    state= {
-        employees: {
-            id: 1,
-            image: "https://randomuser.me/api/portraits/thumb/men/75.jpg",
-            name: "Arnold Palmer",
-            phone: "867-5309",
-            email: "arnold@test.com",
-            DOB: "01-02-1990"
-        }
-    }
+  state = {
+    employees: [
+      {
+        id: 1,
+        image: "https://randomuser.me/api/portraits/thumb/men/75.jpg",
+        name: "Arnold Palmer",
+        phone: "867-5309",
+        email: "arnold@test.com",
+        DOB: "01-02-1990",
+      },
+      {
+        id: 2,
+        image: "https://randomuser.me/api/portraits/thumb/men/75.jpg",
+        name: "Bob Test",
+        phone: "867-5309",
+        email: "bob@test.com",
+        DOB: "02-01-1990",
+      },
+    ],
+  };
   render() {
     return (
       <div className="container">
@@ -28,19 +38,9 @@ class Employees extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  {/* <th scope="row">1</th> */}
-                  <td>
-                    <img
-                      src={this.state.employees.image}
-                      alt="employee photo"
-                    ></img>
-                  </td>
-                  <td>{this.state.employees.name}</td>
-                  <td>{this.state.employees.phone}</td>
-                  <td>{this.state.employees.email}</td>
-                  <td>{this.state.employees.phone}</td>
-                </tr>
+                {this.state.employees.map((employee) => (
+                  <EmployeeRow {...employee}/>
+                ))}
               </tbody>
             </table>
           </div>

@@ -6,47 +6,37 @@ class Employees extends Component {
   state = {
     employees: [],
     sortByName: "",
- 
   };
 
-  componentDidMount (){
+  componentDidMount() {
     this.getEmployees();
   }
 
-
   getEmployees = () => {
-    axios.get("https://randomuser.me/api/?results=25&nat=us").then((response) => {
-      console.log(response.data.results);
-      this.setState({employees: response.data.results});
-    });
+    axios
+      .get("https://randomuser.me/api/?results=25&nat=us")
+      .then((response) => {
+        console.log(response.data.results);
+        this.setState({ employees: response.data.results });
+      });
   };
 
   handleNameSort = () => {
-    if (this.sortByName === ""){
-      const sortedNames = this.state.employees;
-
+    console.log("you clicked the name sort arrow");
+    let sortedNames = this.state.employees;
+    // if (this.sortByName === "") {
       sortedNames.sort((a, b) => {
-        if(a.name.first < b.name.first) {
-          return -1;
-        } else if (a.name.first > b.name.first) {
-          return 1;
-        }
-        
-      })
-    }
-  }
+        return a.name.first.localeCompare(b.name.first);
+      });
+      this.setState({ employees: sortedNames})
+    
+  };
 
   // FROM STACK OVERFLOW ABOUT SORTING ALPHABETICALLY
-//   users.sort(function(a, b){
-//     if(a.firstname < b.firstname) { return -1; }
-//     if(a.firstname > b.firstname) { return 1; }
-//     return 0;
-// })
 
-// ["Foo", "bar"].sort(function (a, b) {
-//   return a.toLowerCase().localeCompare(b.toLowerCase());
-// });
-
+  // ["Foo", "bar"].sort(function (a, b) {
+  //   return a.toLowerCase().localeCompare(b.toLowerCase());
+  // });
 
   render() {
     return (
@@ -57,7 +47,9 @@ class Employees extends Component {
               <thead>
                 <tr>
                   <th scope="col">Image</th>
-                  <th scope="col" onClick={this.handleNameSort}>Name <i className="fas fa-sort-down"></i></th>
+                  <th scope="col" onClick={this.handleNameSort}>
+                    Name <i className="fas fa-sort-down"></i>
+                  </th>
                   <th scope="col">Phone</th>
                   <th scope="col">Email</th>
                   <th scope="col">DOB</th>

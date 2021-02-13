@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import EmployeeRow from "../EmployeeRow/EmployeeRow";
 import axios from "axios";
-// import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 
 class Employees extends Component {
   state = {
     employees: [],
     sortByName: "",
-    sortedEmployees: [],
     search: "",
   };
 
@@ -31,7 +30,11 @@ class Employees extends Component {
 
     this.setState({
       [name]: value,
-    })
+    });
+
+    
+
+
   }
 
   handleNameSort = () => {
@@ -57,8 +60,8 @@ class Employees extends Component {
       <div className="container-fluid">
         <div className="row d-flex justify-content-center">
           <div className="col-2">
-            {/* <SearchBar name={/> */}
-            <form>
+            <SearchBar value={this.state.search} handleInputChange={this.handleInputChange}/>
+            {/* <form>
               <div className="form-group bg-dark text-white">
                 <input
                   type="text"
@@ -70,7 +73,7 @@ class Employees extends Component {
                   onChange={this.handleInputChange}
                 />
               </div>
-            </form>
+            </form> */}
           </div>
         </div>
         <div className="row">

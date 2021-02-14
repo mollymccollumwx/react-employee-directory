@@ -8,6 +8,7 @@ class Employees extends Component {
     employees: [],
     sortByName: "",
     search: "",
+    filteredEmployees: []
   };
 
   componentDidMount() {
@@ -23,28 +24,41 @@ class Employees extends Component {
   };
 
   handleInputChange = (e) => {
-    e.preventDefault();
-
     const { name, value } = e.target;
 
     this.setState({
       [name]: value,
     });
 
-    const newSearch = {
-      search: this.state.search,
-    };
-    // console.log(newSearch);
+    // const newSearch = {
+    //   search: this.state.search,
+    // };
 
-    const filteredEmployees = [...this.state.employees];
-    // console.log(filteredEmployees);
+
+
+    // });
+    // const filteredEmployees = this.state.employees.filter((employee => {
+    //   return newSearch.indexOf(employee.name.first) > -1 || newSearch.indexOf(employee.name.last) > -1
+    // });
+
+    const filteredEmployees = this.state.employees;
+
     filteredEmployees.filter((employee) => {
-      if (newSearch === employee.name.first){
-      return employee;
-      }
+      // console.log(employee);
+      // console.log(value);
+      const name = employee.name.first.toLowerCase();
+      const newSearch = value.toLowerCase().trim();
+
+      // console.log(name);
+      // console.log(newSearch);
+     
+      return name.includes(newSearch); 
     });
+
+    console.log(filteredEmployees);
+
     this.setState({
-      employees: filteredEmployees
+      filteredEmployees: filteredEmployees,
     })
   };
 
@@ -78,19 +92,6 @@ class Employees extends Component {
               value={this.state.search}
               handleInputChange={this.handleInputChange}
             />
-            {/* <form>
-              <div className="form-group bg-dark text-white">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Search"
-                  value={this.state.search}
-                  name="search"
-                  onChange={this.handleInputChange}
-                />
-              </div>
-            </form> */}
           </div>
         </div>
         <div className="row">

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import EmployeeRow from "../EmployeeRow/EmployeeRow";
 import axios from "axios";
 import SearchBar from "../SearchBar/SearchBar";
+import "./employess.css";
 
 class Employees extends Component {
   state = {

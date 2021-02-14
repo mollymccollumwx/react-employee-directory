@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchBar = (props) => {
   return (
-    <form>
+    <form onSubmit={props.submitHandler}>
       <div className="form-group bg-dark text-white">
         <input
           type="text"

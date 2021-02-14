@@ -18,7 +18,6 @@ class Employees extends Component {
     axios
       .get("https://randomuser.me/api/?results=25&nat=us")
       .then((response) => {
-        console.log(response.data.results);
         this.setState({ employees: response.data.results });
       });
   };
@@ -26,20 +25,30 @@ class Employees extends Component {
   handleInputChange = (e) => {
     e.preventDefault();
 
-    const {name, value} = e.target;
+    const { name, value } = e.target;
 
     this.setState({
       [name]: value,
     });
 
-    
+    const newSearch = {
+      search: this.state.search,
+    };
+    // console.log(newSearch);
 
-
-  }
+    const filteredEmployees = [...this.state.employees];
+    // console.log(filteredEmployees);
+    filteredEmployees.filter((employee) => {
+      if (newSearch === employee.name.first){
+      return employee;
+      }
+    });
+    this.setState({
+      employees: filteredEmployees
+    })
+  };
 
   handleNameSort = () => {
-    console.log("you clicked the name sort arrow");
-    console.log(this.state.sortByName);
     let sortedNames = this.state.employees;
 
     if (this.state.sortByName === "") {
@@ -55,12 +64,20 @@ class Employees extends Component {
     }
   };
 
+  submitHandler(e) {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <div className="container-fluid">
         <div className="row d-flex justify-content-center">
           <div className="col-2">
-            <SearchBar value={this.state.search} handleInputChange={this.handleInputChange}/>
+            <SearchBar
+              submitHandler ={this.submitHandler}
+              value={this.state.search}
+              handleInputChange={this.handleInputChange}
+            />
             {/* <form>
               <div className="form-group bg-dark text-white">
                 <input

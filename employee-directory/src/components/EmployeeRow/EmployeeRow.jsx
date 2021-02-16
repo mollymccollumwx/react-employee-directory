@@ -5,7 +5,7 @@ const EmployeeRow = ({ picture, name, phone, email, dob }) => {
   return (
     <tr>
       <td>
-        <img src={picture.thumbnail} alt="employee photo"></img>
+        <img src={picture.medium} alt="employee photo"></img>
       </td>
       <td>{name.first} {name.last}</td>
       <td>{phone}</td>

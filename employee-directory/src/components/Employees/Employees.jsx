@@ -9,7 +9,7 @@ class Employees extends Component {
     employees: [],
     sortByName: "",
     search: "",
-    filteredEmployees: []
+    filteredEmployees: [],
   };
 
   componentDidMount() {
@@ -20,7 +20,10 @@ class Employees extends Component {
     axios
       .get("https://randomuser.me/api/?results=25&nat=us")
       .then((response) => {
-        this.setState({ employees: response.data.results });
+        this.setState({
+          employees: response.data.results,
+          filteredEmployees: response.data.results,
+        });
       });
   };
 
@@ -31,51 +34,36 @@ class Employees extends Component {
       [name]: value,
     });
 
-    // const newSearch = {
-    //   search: this.state.search,
-    // };
+    const newSearch = {
+      search: this.state.search,
+    };
 
-
-
-    // });
-    // const filteredEmployees = this.state.employees.filter((employee => {
-    //   return newSearch.indexOf(employee.name.first) > -1 || newSearch.indexOf(employee.name.last) > -1
-    // });
-
-    const filteredEmployees = this.state.employees;
-
-    filteredEmployees.filter((employee) => {
-      // console.log(employee);
-      // console.log(value);
+    const filteredEmployees = this.state.employees.filter((employee) => {
       const name = employee.name.first.toLowerCase();
       const newSearch = value.toLowerCase().trim();
-
-      // console.log(name);
-      // console.log(newSearch);
-     
-      return name.includes(newSearch); 
+      return name.includes(newSearch);
     });
 
     console.log(filteredEmployees);
 
     this.setState({
       filteredEmployees: filteredEmployees,
-    })
+    });
   };
 
   handleNameSort = () => {
     let sortedNames = this.state.employees;
 
-    if (this.state.sortByName === "") {
+    if (this.state.sortByName === "" || this.state.sortByName === "zToA") {
       sortedNames.sort((a, b) => {
         return a.name.first.localeCompare(b.name.first);
       });
-      this.setState({ employees: sortedNames, sortByName: "aToZ" });
+      this.setState({ filteredEmployees: sortedNames, sortByName: "aToZ" });
     } else if (this.state.sortByName === "aToZ") {
       sortedNames.sort((a, b) => {
         return b.name.first.localeCompare(a.name.first);
       });
-      this.setState({ employees: sortedNames, sortByName: "zToA" });
+      this.setState({ filteredEmployees: sortedNames, sortByName: "zToA" });
     }
   };
 
@@ -89,7 +77,7 @@ class Employees extends Component {
         <div className="row d-flex justify-content-center">
           <div className="col-2">
             <SearchBar
-              submitHandler ={this.submitHandler}
+              submitHandler={this.submitHandler}
               value={this.state.search}
               handleInputChange={this.handleInputChange}
             />
@@ -110,7 +98,7 @@ class Employees extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.employees.map((employee) => (
+                {this.state.filteredEmployees.map((employee) => (
                   <EmployeeRow {...employee} key={employee.id.value} />
                 ))}
               </tbody>
